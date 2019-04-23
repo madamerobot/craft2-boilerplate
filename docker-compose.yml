@@ -1,0 +1,26 @@
+version: '2.4'
+
+services:
+
+  craftcms:
+    image: blackpepper/craftcms
+    environment:
+      DB_SERVER: database
+      DB_USER: craft
+      DB_PASSWORD: password
+      DB_DATABASE: craft
+      DB_DRIVER: mysql
+    links:
+      - database
+    ports:
+      - 8080:80
+
+  database:
+    image: mariadb:10
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: craft
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: craft
+    ports:
+      - 3306:3306
